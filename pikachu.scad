@@ -1,3 +1,6 @@
+// First version has feet that are too thin; change from 0.1 to 0.4
+// Arms are too short, were 4 long and are now 6
+
 $fs=01;
 module tail_part()
 {
@@ -11,7 +14,7 @@ module pikachu_tail()
 }
 module pikachu_arm()
 {
-    rotate( [160,0,0] ) cylinder(r=1,h=4);
+    rotate( [160,0,0] ) cylinder(r=1,h=6);
 }
 module pikachu_arms()
 { 	
@@ -20,8 +23,8 @@ module pikachu_arms()
 }
 module pikachu_ears()
 {
-    translate( [0,-2.5,0] ) rotate( [45,-22.5,0] ) scale( [0.25,0.5,1.5] ) sphere(4);  
-    translate( [0,2.5,0] ) rotate( [-45,-22.5,0] ) scale( [0.25,0.5,1.5] ) sphere(4);  
+    translate( [0,-2.5,0] ) rotate( [45,-35,0] ) scale( [0.25,0.5,1.5] ) sphere(4);  
+    translate( [0,2.5,0] ) rotate( [-45,-35,0] ) scale( [0.25,0.5,1.5] ) sphere(4);  
 }
 module pikachu_head()
 {
@@ -40,7 +43,7 @@ module pikachu_foot()
     intersection()
     {
         translate([-5,-5,0]) cube( [10,10,10] );
-        scale( [1,0.5,0.1] ) sphere(2.5);
+        scale( [1,0.5,0.4] ) sphere(2.5);
     }
 }
 module pikachu_feet()
@@ -60,4 +63,11 @@ module pikachu()
     translate( [0,0,-6.5] ) pikachu_feet();
 	//rotate( [90,0,0] ) translate( [-15,-6.55,0] ) pikachu_tail();
 }
-pikachu();
+
+scale(2) difference()
+{
+ pikachu();
+ rotate( [0,15,0] ) translate( [-4,0,-4] ) pikachu_tail();
+}
+
+*scale([2,2,1.8]) rotate([90,0,0]) pikachu_tail();
